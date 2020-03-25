@@ -33,7 +33,7 @@ type JUnitTestSuite struct {
 type JUnitTestCase struct {
 	Name           string               `xml:"name,attr"`
 	ClassName      string               `xml:"classname,attr"`
-	PassedMessage  *JUnitPassedMessage  `xml:"passed,omitempty"`
+	PassedMessage  *JUnitPassedMessage  `xml:"system-out,omitempty"`
 	FailureMessage *JUnitFailureMessage `xml:"failure,omitempty"`
 	Skipped        *JUnitSkipped        `xml:"skipped,omitempty"`
 	Time           float64              `xml:"time,attr"`
@@ -164,7 +164,7 @@ func (reporter *JUnitReporter) SpecSuiteDidEnd(summary *types.SuiteSummary) {
 	if err == nil {
 		fmt.Fprintf(os.Stdout, "\nJUnit report was created: %s\n", filePath)
 	} else {
-		fmt.Fprintf(os.Stderr,"\nFailed to generate JUnit report data:\n\t%s", err.Error())
+		fmt.Fprintf(os.Stderr, "\nFailed to generate JUnit report data:\n\t%s", err.Error())
 	}
 }
 
